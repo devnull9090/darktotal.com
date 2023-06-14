@@ -1,0 +1,102 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+.card-status-private {
+  background-color: rgb(43, 150, 43) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.card-status-restricted {
+  background-color: rgb(180, 180, 45) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.card-status-public {
+  background-color: rgb(147, 42, 42) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.sub-log {
+
+  .group-40-million {
+    --col: #ff3366 !important;
+    --col-rgb: 255, 51, 102 !important;
+  }
+
+  .group-30-million {
+    --col: #ff33d3 !important;
+    --col-rgb: 255, 51, 211 !important;
+  }
+
+  .group-20-million {
+    --col: #a333ff !important;
+    --col-rgb: 163, 51, 255 !important;
+  }
+
+  .group-10-million {
+    --col: #7733ff !important;
+    --col-rgb: 119, 51, 255 !important;
+  }
+
+  .group-5-million {
+    --col: #336dff !important;
+    --col-rgb: 51, 109, 255 !important;
+  }
+
+  .group-1-million {
+    --col: #33b8ff !important;
+    --col-rgb: 51, 184, 255 !important;
+  }
+
+  .group-500k {
+    --col: #33d3ff !important;
+    --col-rgb: 51, 211, 255 !important;
+  }
+
+  .group-250k {
+    --col: #33ff88 !important;
+    --col-rgb: 51, 255, 136 !important;
+  }
+
+  .group-100k {
+    --col: #33ff6d !important;
+    --col-rgb: 51, 255, 109 !important;
+  }
+
+  .group-50k {
+    --col: #b4ff33 !important;
+    --col-rgb: 180, 255, 51 !important;
+  }
+
+  .group-5k {
+    --col: #717171 !important;
+    --col-rgb: 113, 113, 113 !important;
+  }
+
+  .group-5k-and-below {
+    --col: #2f2f2f !important;
+    --col-rgb: 47, 47, 47 !important;
+  }
+
+  .group-1k {
+    --col: #676767 !important;
+    --col-rgb: 103, 103, 103 !important;
+  }
+
+  .group-1k-and-below {
+    --col: #676767 !important;
+    --col-rgb: 103, 103, 103 !important;
+  }
+
+  .card {
+    border-left: 5px solid var(--col) !important;
+    color: var(--col) !important;
+    // calculate a semi transparent version of the color
+    background-color: rgba(var(--col-rgb), 0.1) !important;
+  
+
+  }
+}

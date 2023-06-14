@@ -1,0 +1,33 @@
+{
+  "name": "darktotal.com",
+  "author": "https://github.com/devnull9090",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devnull9090/darktotal.com.git"
+  },
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.17.9",
+    "axios": "^1.4.0",
+    "escape-string-regexp": "^5.0.0",
+    "eventsource": "^2.0.2",
+    "jquery": "^3.6.0",
+    "meteor-node-stubs": "^1.2.1",
+    "moment-timezone": "^0.5.43",
+    "simpl-schema": "^3.4.1",
+    "socket.io-client": "^4.6.2"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  }
+}
