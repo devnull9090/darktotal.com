@@ -38,7 +38,7 @@
         <div class="card animate__animated animate__flipInX group-{{safeName group}}">
             <div class="card-body">
                 <div class="card-title lead">
-                    {{name}} has gone {{statusTo}} ({{group}})
+                    <a href="https://old.reddit.com/{{name}}" target="_blank">{{name}}</a> has gone {{statusTo}} {{#if statusFrom}}from {{statusFrom}}{{/if}} ({{group}})
                 </div>
                 <p class="card-text">{{moment createdAt}}</p>
             </div>
