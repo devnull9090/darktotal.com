@@ -6,6 +6,9 @@
             <div class="col-12 {{#if showLog}}col-lg-9{{else}}col-lg{{/if}}">
                 {{> SubRedditTotals}}
 
+                {{> GraphTotalsNew}}
+                {{> GraphTotals}}
+
                 {{> SubRedditList}}
 
                 <hr />
@@ -151,6 +154,18 @@
                 </div>
             </div>
         </div>
+    </div>
+</template>
+
+<template name="GraphTotals">
+    <div class="dark-time-series">
+        <canvas id="dark-time-series-chart"></canvas>
+    </div>
+</template>
+
+<template name="GraphTotalsNew">
+    <div class="dark-time-series">
+        <canvas id="dark-time-series-all-chart"></canvas>
     </div>
 </template>
 

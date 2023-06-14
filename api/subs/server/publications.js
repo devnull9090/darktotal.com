@@ -5,7 +5,8 @@ import {
 import {
     SubReddits,
     SubRedditsLog,
-    SubRedditsTotals
+    SubRedditsTotals,
+    SubRedditsTotalsLog
 } from '../subs.js';
 
 Meteor.publish('SubReddits', function (group) {
@@ -26,4 +27,14 @@ Meteor.publish('SubRedditsLog', function () {
 
 Meteor.publish('SubRedditsTotals', function () {
     return SubRedditsTotals.find();
+});
+
+
+Meteor.publish('SubRedditsTotalsLog', function () {
+    return SubRedditsTotalsLog.find({}, {
+        sort: {
+            createdAt: -1
+        },
+        limit: 5
+    });
 });

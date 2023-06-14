@@ -8,7 +8,8 @@ import {
     SubReddits,
     SubRedditsTotals,
     SubRedditsLog,
-    mapState
+    mapState,
+    SubRedditsTotalsLog
 } from '../../../api/subs/subs.js';
 
 import EventSource from 'eventsource';
@@ -87,7 +88,7 @@ function newEventSource() {
 function handleStateUpdate(message) {
     console.log('handleStateUpdate');
 
-    if(!message.subreddits) {
+    if (!message.subreddits) {
         console.error('No subreddits in message', message);
         return;
     }
@@ -100,7 +101,7 @@ function handleStateUpdate(message) {
 
     message.subreddits.forEach(subreddit => {
 
-        if(subsToFilter.includes(subreddit.name.toLowerCase())) {
+        if (subsToFilter.includes(subreddit.name.toLowerCase())) {
             console.log('Ignoring sub', subreddit.name);
             return;
         }
@@ -196,7 +197,7 @@ function handleDeltaUpdate(data) {
         }, {
             upsert: true
         });
-    
+
         SubRedditsLog.insertAsync({
             name: data.name,
             status: mapState(data.state),
@@ -256,3 +257,55 @@ function handleDeltaUpdate(data) {
         group: data.section
     });
 }
+
+
+// every minute, calculate the totals for that minute and insert them into the SubRedditsTotalsLog collection
+const cron = require('node-cron');
+
+cron.schedule('0 * * * * *', async function () {
+    console.log('Calculating new totals...');
+
+    const totals = {
+        totalDark: 0,
+        totalRestricted: 0,
+        totalPublic: 0,
+        totalPrivate: 0,
+        totalParticipating: 0,
+        totalNewDark: 0,
+        totalNewRestricted: 0,
+        totalNewPublic: 0,
+        totalNewPrivate: 0,
+        createdAt: new Date()
+    };
+
+    const currentTotals = SubRedditsTotals.findOne({
+        _id: 'totals'
+    });
+
+    if (currentTotals) {
+        totals.totalDark = currentTotals.totalDark;
+        totals.totalRestricted = currentTotals.totalRestricted;
+        totals.totalPublic = currentTotals.totalPublic;
+        totals.totalPrivate = currentTotals.totalPrivate;
+        totals.totalParticipating = currentTotals.totalParticipating;
+    }
+
+    // get the latest SubRedditsLog from 60 seconds ago
+    const lastLog = SubRedditsLog.find({
+        createdAt: {
+            $gte: new Date(new Date().getTime() - 60000)
+        }
+    }).forEach(log => {
+        if (log.statusTo === 'dark') {
+            totals.totalNewDark++;
+        } else if (log.statusTo === 'restricted') {
+            totals.totalNewRestricted++;
+        } else if (log.statusTo === 'public') {
+            totals.totalNewPublic++;
+        } else if (log.statusTo === 'private') {
+            totals.totalNewPrivate++;
+        }
+    });
+
+    SubRedditsTotalsLog.insertAsync(totals);
+});

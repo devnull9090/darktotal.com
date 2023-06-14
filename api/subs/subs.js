@@ -7,6 +7,7 @@ import SimpleSchema from 'simpl-schema';
 
 export const SubReddits = new Mongo.Collection('SubReddits');
 export const SubRedditsTotals = new Mongo.Collection('SubRedditsTotals');
+export const SubRedditsTotalsLog = new Mongo.Collection('SubRedditsTotalsLog');
 export const SubRedditsLog = new Mongo.Collection('SubRedditsLog');
 export const SubRedditsBlacklist = new Mongo.Collection('SubRedditsBlacklist');
 

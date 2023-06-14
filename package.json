@@ -15,10 +15,15 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
+    "chart.js": "^4.3.0",
+    "chartjs-adapter-moment": "^1.0.1",
+    "chartjs-plugin-zoom": "^2.0.1",
     "eventsource": "^2.0.2",
     "jquery": "^3.6.0",
     "meteor-node-stubs": "^1.2.1",
     "moment-timezone": "^0.5.43",
+    "node-cron": "^3.0.2",
     "simpl-schema": "^3.4.1"
   },
   "meteor": {
