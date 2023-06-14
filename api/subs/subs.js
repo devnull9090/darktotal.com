@@ -22,7 +22,6 @@ export const subGroups = [
     '100k+',
     '50k+',
     '5k+',
-    '5k',
     '5k and below',
     '1k+',
     '1k and below',

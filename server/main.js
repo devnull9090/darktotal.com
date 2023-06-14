@@ -25,6 +25,7 @@ WebApp.rawConnectHandlers.use(
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "hjet8ny36r");
         </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4043269018813220" crossorigin="anonymous"></script>
         `;
     }
     next();

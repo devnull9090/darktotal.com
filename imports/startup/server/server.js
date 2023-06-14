@@ -52,17 +52,17 @@ let eventSource = newEventSource();
 function newEventSource() {
     var eventSource = new EventSource('https://reddark.rewby.archivete.am/sse');
 
-    eventSource.onopen = function (event) {
+    eventSource.onopen = Meteor.bindEnvironment(function (event) {
         console.log("Server connection open!");
-    }
+    });
 
-    eventSource.onerror = function (event) {
+    eventSource.onerror = Meteor.bindEnvironment(function (event) {
         console.log("Error with event source. Reconnect in 3 seconds...");
         eventSource.close();
         Meteor.setTimeout(() => {
             eventSource = newEventSource();
         }, 3000);
-    };
+    });
 
     eventSource.onmessage = Meteor.bindEnvironment(function (event) {
         console.log('Message from server!');
@@ -152,13 +152,13 @@ function handleStateUpdate(message) {
     {"type":"Delta","content":{"name":"r/AskUK","section":"1+ million","previous_state":"RESTRICTED","state":"PUBLIC"}}
     {"type":"Delta","content":{"name":"r/EdgeTogether","section":"50k+","previous_state":"PRIVATE","state":"RESTRICTED"}}
 */
+
+// TODO: clean this up.. there's duplicated code here!!!
 function handleDeltaUpdate(data) {
     console.log('handleDeltaUpdate event', data);
 
     console.log(`${data.name} is now ${data.state}`);
     if (data.state !== 'PUBLIC') {
-
-
         const update = {
             $inc: {
                 totalDark: 1
@@ -183,6 +183,27 @@ function handleDeltaUpdate(data) {
             $set: {
                 lastUpdated: new Date()
             }
+        });
+
+        SubReddits.updateAsync({
+            name: data.name
+        }, {
+            $set: {
+                status: mapState(data.state),
+                lastUpdated: new Date(),
+                group: data.section
+            }
+        }, {
+            upsert: true
+        });
+    
+        SubRedditsLog.insertAsync({
+            name: data.name,
+            status: mapState(data.state),
+            createdAt: new Date(),
+            statusFrom: mapState(data.previous_state),
+            statusTo: mapState(data.state),
+            group: data.section
         });
         return;
     }
