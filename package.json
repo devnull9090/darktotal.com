@@ -15,13 +15,11 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "axios": "^1.4.0",
-    "escape-string-regexp": "^5.0.0",
     "eventsource": "^2.0.2",
     "jquery": "^3.6.0",
     "meteor-node-stubs": "^1.2.1",
     "moment-timezone": "^0.5.43",
-    "simpl-schema": "^3.4.1",
-    "socket.io-client": "^4.6.2"
+    "simpl-schema": "^3.4.1"
   },
   "meteor": {
     "mainModule": {

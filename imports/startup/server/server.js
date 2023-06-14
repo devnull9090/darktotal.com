@@ -3,7 +3,6 @@ import './fastroutes.js';
 import '../../../api/subs/server/publications.js';
 import './routes/api/subreddits.js';
 
-import io from 'socket.io-client';
 import {
     SubRedditsBlacklist,
     SubReddits,
