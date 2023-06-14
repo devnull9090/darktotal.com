@@ -270,7 +270,8 @@ Template.GraphTotalsNew.onCreated(function () {
         ];
     }
     this.startFetch = function ({
-        chart
+        chart,
+        freshPull = false
     }) {
         const {
             min,
@@ -287,7 +288,7 @@ Template.GraphTotalsNew.onCreated(function () {
             Fetched data between 1659250389965 and 1659423189965
             */
             const startDate = new Date(min);
-            const endDate = new Date(max);
+            const endDate = new Date(freshPull ? new Date() : max);
             if (Meteor.isDevelopment) {
                 console.log('startDate', startDate, startDate.toUTCString());
                 console.log('endDate', endDate, endDate.toUTCString());
@@ -388,22 +389,34 @@ Template.GraphTotalsNew.onRendered(function () {
 
         SubRedditsTotalsLog.find({
             createdAt: {
-                $gte: startDate,
+                $gte: new Date(),
             }
         }).observeChanges({
             added: function (id, fields) {
+                if (Meteor.isDevelopment) {
+                    console.log('added', id, fields);
+                }
                 instance.startFetch({
-                    chart: instance.chart
+                    chart: instance.chart,
+                    freshPull: true
                 });
             },
             changed: function (id, fields) {
+                if (Meteor.isDevelopment) {
+                    console.log('changed', id, fields);
+                }
                 instance.startFetch({
-                    chart: instance.chart
+                    chart: instance.chart,
+                    freshPull: true
                 });
             },
             removed: function (id) {
+                if (Meteor.isDevelopment) {
+                    console.log('removed', id);
+                }
                 instance.startFetch({
-                    chart: instance.chart
+                    chart: instance.chart,
+                    freshPull: true
                 });
             }
         });
@@ -476,7 +489,8 @@ Template.GraphTotals.onCreated(function () {
         ];
     }
     this.startFetch = function ({
-        chart
+        chart,
+        freshPull = false
     }) {
         const {
             min,
@@ -493,7 +507,7 @@ Template.GraphTotals.onCreated(function () {
             Fetched data between 1659250389965 and 1659423189965
             */
             const startDate = new Date(min);
-            const endDate = new Date(max);
+            const endDate = new Date(freshPull ? new Date() : max);
             if (Meteor.isDevelopment) {
                 console.log('startDate', startDate, startDate.toUTCString());
                 console.log('endDate', endDate, endDate.toUTCString());
@@ -594,22 +608,34 @@ Template.GraphTotals.onRendered(function () {
 
         SubRedditsTotalsLog.find({
             createdAt: {
-                $gte: startDate,
+                $gte: new Date(),
             }
         }).observeChanges({
             added: function (id, fields) {
+                if (Meteor.isDevelopment) {
+                    console.log('added', id, fields);
+                }
                 instance.startFetch({
-                    chart: instance.chart
+                    chart: instance.chart,
+                    freshPull: true
                 });
             },
             changed: function (id, fields) {
+                if (Meteor.isDevelopment) {
+                    console.log('changed', id, fields);
+                }
                 instance.startFetch({
-                    chart: instance.chart
+                    chart: instance.chart,
+                    freshPull: true
                 });
             },
             removed: function (id) {
+                if (Meteor.isDevelopment) {
+                    console.log('removed', id);
+                }
                 instance.startFetch({
-                    chart: instance.chart
+                    chart: instance.chart,
+                    freshPull: true
                 });
             }
         });

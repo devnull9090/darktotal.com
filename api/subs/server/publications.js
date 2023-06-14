@@ -35,6 +35,6 @@ Meteor.publish('SubRedditsTotalsLog', function () {
         sort: {
             createdAt: -1
         },
-        limit: 5
+        limit: 1
     });
 });
