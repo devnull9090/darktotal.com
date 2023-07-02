@@ -8,5 +8,7 @@
     "toGo": "to go",
     "outOf": "out of",
     "hideLog": "Hide Log",
-    "showLog": "Show Log"
+    "showLog": "Show Log",
+    "loading_comments": "Loading comments...",
+    "no_subreddit_log_history": "No subreddit log history for __subreddit__"
 }

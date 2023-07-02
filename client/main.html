@@ -1,6 +1,4 @@
 <head>
-  <title>darktotal.com - Real-time Reddit Blackout Stats</title>
-  <meta name="description" content="Real-time Reddit Blackout Stats">
   <meta name="author" content="devnull9090">
   <meta name="theme-color" content="#000000">
   <meta charset="UTF-8">
@@ -23,7 +21,7 @@
   </noscript>
 </head>
 
-<body data-bs-theme="dark">
+<body>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js"
     integrity="sha512-vIAkTd3Ary9rwf0lrb9kIipyIkavKpYGnyopBXs6SiLfNSzAvCNvvQvKwBV5Xlag4O8oZpZ5U5n4bHoErGQxjw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -38,9 +36,9 @@
       <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
         <span class="fs-4">DarkTotal.com</span>
       </a>
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" title="Coming soon..." data-bs-toggle="tooltip"
+      <form action="/search" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" title="Search for a subreddit" data-bs-toggle="tooltip"
         data-bs-placement="bottom">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" disabled>
+        <input type="search" name="q" class="form-control" placeholder="Search..." aria-label="Search" value="{{searchPhrase}}">
       </form>
     </div>
   </header>

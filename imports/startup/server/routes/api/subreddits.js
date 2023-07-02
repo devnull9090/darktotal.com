@@ -11,7 +11,7 @@ import {
     Meteor
 } from 'meteor/meteor';
 import bodyParser from 'body-parser';
-
+import escapeStringRegexp from 'escape-string-regexp';
 import moment from 'moment-timezone';
 
 Picker.middleware(bodyParser.json());
@@ -163,9 +163,10 @@ Picker.route('/api/subreddits', function (params, req, res, next) {
     const sort = params.query.sort || 'name';
     const group = params.query.group || '';
     const status = params.query.status || null;
+    const search = params.query.search || null;
 
 
-    const filter = subFilter({
+    let filter = subFilter({
         group,
         status
     });
@@ -179,7 +180,11 @@ Picker.route('/api/subreddits', function (params, req, res, next) {
         }));
     }
 
-    console.log('filter', filter);
+    if(search) {
+        filter = {
+                 name: { $regex: escapeStringRegexp(search), $options: 'i' } 
+        }
+    }       
 
     const extra = {
         fields: {

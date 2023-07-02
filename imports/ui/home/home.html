@@ -41,7 +41,7 @@
         <div class="card animate__animated animate__flipInX group-{{safeName group}}">
             <div class="card-body">
                 <div class="card-title lead">
-                    <a href="https://old.reddit.com/{{name}}" target="_blank">{{name}}</a> has gone {{statusTo}} {{#if statusFrom}}from {{statusFrom}}{{/if}} ({{group}})
+                    <a href="/{{name}}">{{name}}</a> has gone {{statusTo}} {{#if statusFrom}}from {{statusFrom}}{{/if}} ({{group}})
                 </div>
                 <p class="card-text">{{moment createdAt}}</p>
             </div>
@@ -216,7 +216,7 @@
     <div class="col-6 col-lg-2 col-xl-2 mt-2">
         <div class="card card-status-{{status}}">
             <div class="card-body">
-                <p class="card-text">{{name}} ({{status}})</p>
+                <p class="card-text"><a href="/{{name}}">{{name}}</a> ({{status}})</p>
             </div>
         </div>
     </div>

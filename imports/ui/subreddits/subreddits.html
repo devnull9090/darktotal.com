@@ -1,0 +1,34 @@
+<template name="Subreddit">
+    {{> header}}
+    <main class="container mt-5">
+        <h1><strong>{{subreddit.name}}</strong> is currently <strong>{{subreddit.status}}</strong></h1>
+        <a href="https://old.reddit.com/{{subreddit.name}}" target="_blank">https://old.reddit.com/{{subreddit.name}}</a>
+        <hr />
+        <div class="row">
+            <div class="col-12">
+                {{#if subredditLog}}
+                {{> SubLog}}
+                {{else}}
+                <div class="alert alert-warning" role="alert">
+                    {{_ "no_subreddit_log_history" subreddit=subreddit.name}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="bg-dark">
+                    <div id="disqus_thread" class="rounded bg-dark">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+                Contribute to this project on <a target="_blank"
+                    href="https://github.com/devnull9090/darktotal.com">GitHub</a>. 🥰
+            </div>
+        </div>
+    </main>
+</template>

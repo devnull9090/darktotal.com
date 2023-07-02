@@ -2,6 +2,7 @@ import './fastroutes.js';
 
 import '../../../api/subs/server/publications.js';
 import './routes/api/subreddits.js';
+import './routes/sitemap.js';
 
 import {
     SubRedditsBlacklist,
@@ -51,7 +52,7 @@ subsToFilter.forEach(sub => {
 let eventSource = newEventSource();
 
 function newEventSource() {
-    var eventSource = new EventSource('https://reddark.rewby.archivete.am/sse');
+    var eventSource = new EventSource('https://reddark.untone.uk/sse');
 
     eventSource.onopen = Meteor.bindEnvironment(function (event) {
         console.log("Server connection open!");

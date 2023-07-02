@@ -2,6 +2,13 @@ body {
   padding: 10px;
   font-family: sans-serif;
   overflow-x: hidden;
+  background-color: #212529;
+  color: #adb5bd;
+}
+
+html {
+  background-color: #212529;
+  color: #adb5bd;
 }
 
 .card-status-private {
@@ -96,7 +103,7 @@ body {
     color: var(--col) !important;
     // calculate a semi transparent version of the color
     background-color: rgba(var(--col-rgb), 0.1) !important;
-  
+
 
   }
 }
@@ -110,4 +117,12 @@ body {
 #dark-time-series-all-chart {
   width: 100%;
   max-height: 300px;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+iframe {
+  color-scheme: light;
 }

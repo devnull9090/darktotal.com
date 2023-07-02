@@ -77,6 +77,11 @@ const SubRedditSchema = new SimpleSchema({
             return new Date()
         }
     },
+    lastUpdated: {
+        type: Date,
+        label: "Last Updated At",
+        optional: true
+    },
 });
 
 SubReddits.attachSchema(SubRedditSchema);

@@ -17,7 +17,9 @@ import {
     Mongo
 } from 'meteor/mongo';
 import './home.html';
-
+import {
+    FlowRouter
+} from 'meteor/ostrio:flow-router-extra';
 import {
     Session
 } from 'meteor/session';
@@ -56,8 +58,10 @@ Template.SubLog.onCreated(function () {
 });
 
 Template.SubLog.onRendered(function () {
+    // if we have a subreddit param, subscribe to that subreddit
+    const subreddit = FlowRouter.getParam('_subreddit');
 
-    this.subscribe('SubRedditsLog', {
+    this.subscribe(subreddit ? 'SubRedditLog' : 'SubRedditsLog', `r/${subreddit}`, {
         onReady: () => {
             this.loading.set(false);
         },
@@ -68,7 +72,11 @@ Template.SubLog.onRendered(function () {
 });
 Template.SubLog.helpers({
     sub: function () {
-        return SubRedditsLog.find({}, {
+        const subreddit = FlowRouter.getParam('_subreddit');
+        const filter = subreddit ? {
+            name: `r/${subreddit}`
+        } : {};
+        return SubRedditsLog.find(filter, {
             sort: {
                 createdAt: -1
             },
@@ -80,6 +88,8 @@ Template.SubLog.helpers({
 });
 Template.Home.onCreated(function () {
     this.showLog = new ReactiveVar(true);
+    document.title = 'darktotal.com - Real-time Reddit Blackout Stats';
+    $('meta[name=description]').attr('content', 'Real-time Reddit Blackout Stats');
 });
 
 Template.Home.helpers({
@@ -535,9 +545,9 @@ Template.GraphTotals.onCreated(function () {
 
 Template.GraphTotals.onRendered(function () {
 
-    // get the last 6 hours
+    // get the last 24 hours
     const startDate = new Date();
-    startDate.setHours(startDate.getHours() - 6);
+    startDate.setHours(startDate.getHours() - 24);
     const endDate = new Date();
 
     const instance = this;

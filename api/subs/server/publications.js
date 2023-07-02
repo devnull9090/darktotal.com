@@ -9,12 +9,22 @@ import {
     SubRedditsTotalsLog
 } from '../subs.js';
 
+Meteor.publish('SubReddit', function (subreddit) {
+    return SubReddits.find({
+        name: subreddit
+    });
+});
+Meteor.publish('SubRedditLog', function (subreddit) {
+    return SubRedditsLog.find({
+        name: subreddit
+    });
+});
+
 Meteor.publish('SubReddits', function (group) {
     return SubReddits.find({
         group: group
     });
 });
-
 
 Meteor.publish('SubRedditsLog', function () {
     return SubRedditsLog.find({}, {
@@ -28,7 +38,6 @@ Meteor.publish('SubRedditsLog', function () {
 Meteor.publish('SubRedditsTotals', function () {
     return SubRedditsTotals.find();
 });
-
 
 Meteor.publish('SubRedditsTotalsLog', function () {
     return SubRedditsTotalsLog.find({}, {
